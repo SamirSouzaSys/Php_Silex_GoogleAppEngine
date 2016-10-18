@@ -6,11 +6,21 @@ require 'vendor/autoload.php';
 
 $app = new Application();
 
-$app->get('/users/{id}', function($id){
-  if(is_null($id))
-    return "Parameter invalid";
+$app->before(function(){
+  print 'Conteúdo before<br/>';
+});
 
-  return 'User ID: '. $id;
-})->value('id', null);
+$app->get('/', function(Application $app){
+  // return $app->escape('Middlewares' ." - ". $data);
+  return $app->escape("Middlewares") . "<br/>";
+});
+
+$app->after(function(){
+  print "After<br/>";
+});
+
+$app->finish(function(){
+  print("Finish<br/>");
+});
 
 $app->run();
