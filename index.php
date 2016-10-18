@@ -6,8 +6,8 @@ require 'vendor/autoload.php';
 
 $app = new Application();
 
-$app->get('/', function(){
-  return 'Hello world';
+$app->get('/users/{id}', function($id){
+  return 'User ID: '. $id;
 });
 
 $app->run();
